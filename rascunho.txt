@@ -1,0 +1,15 @@
+/*input.parentElement significa que essa constante irá retornar
+    o valor da div PAI do input, ou seja, a div FORMCONTROLL que é a div
+    que está em cima do input*/ 
+    const formControl = input.parentElement;
+
+    /*Usando querySelector pra buscar o elemento "small" dentro da
+    form control definida acima...*/ 
+    const small = formControl.querySelector("small");
+
+    /*Adicionando a mensagem de erro*/ 
+    small.innerText = message;
+
+    /*Mudando o nome do CLASS da div adicionando a palavra "error"
+    no final para mostrar a mensagem de erro e a borda vermelha*/ 
+    formControl.className = "form-control error";
