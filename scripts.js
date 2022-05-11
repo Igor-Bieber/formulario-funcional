@@ -19,16 +19,41 @@ function checkInputs() {
     } else{
         setSuccessFor (username);
     }
+
+    /*se o username for menor que 4 caracteres da erro*/ 
+    if(usernameValue.length < 4){
+        setErrorFor(username,"Usuário deve ter no mínimo 4 caracteres")
+    }
+
+    /*se o username for maior que 24 caracteres da erro*/
+    if(usernameValue.length > 24){
+        setErrorFor(username,"Usuário deve ter no máximo 24 caracteres")
+    }
+
+
     
-    /*Faz dar erro se as senhas não forem iguais*/ 
-    if (senhaConfirmValue !== senhaValue){
-        setErrorFor (senha,"As senhas não conferem");
+    /*Faz dar erro se as senhas não forem iguais e da erro se os campos de senha
+    estiverem vazios*/ 
+    if (senhaValue === ""){
+        setErrorFor (senha,"A senha é obrigatória");
+    }else if (senhaConfirmValue !== senhaValue){
         setErrorFor (senhaConfirm,"As senhas não conferem");
     }else{
         setSuccessFor (senha);
         setSuccessFor (senhaConfirm);
     }
 
+    /*se a confirmação de senha estiver vazio ele da erro*/ 
+    if(senhaConfirmValue === ""){
+        setErrorFor (senhaConfirm,"A senha é obrigatória");
+    }
+
+    /*se a senha for menor q 8 da erro*/ 
+    if(senhaValue.length < 8){
+        setErrorFor (senha,"Senha deve ter no mínimo 8 caracteres");
+    }
+
+    /*confirma se o email é valido e da erro se estiver vazio*/ 
     if (emailValue === ""){
         setErrorFor(email,"O email é obrigatório.");
     }else if(!checkEmail(emailValue)){
@@ -36,6 +61,13 @@ function checkInputs() {
     }else{
         setSuccessFor(email);
     }
+
+    const allFormControls = form.querySelectorAll(".form-control");
+
+    const formValid = [ ... allFormControls].every((formControl) => {
+        return (formControl.className = "form-control success");
+    });
+
 }
 function setErrorFor (input, message) {
     /*input.parentElemente = puxa o elemento PAI do INPUT*/ 
@@ -52,6 +84,7 @@ function setSuccessFor (input) {
     formControl.className = "form-control success";
 }
 
+/*função que checka se o email é valido*/ 
 function checkEmail(email) {
     return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
       email
