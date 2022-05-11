@@ -62,12 +62,6 @@ function checkInputs() {
         setSuccessFor(email);
     }
 
-    const allFormControls = form.querySelectorAll(".form-control");
-
-    const formValid = [ ... allFormControls].every((formControl) => {
-        return (formControl.className = "form-control success");
-    });
-
 }
 function setErrorFor (input, message) {
     /*input.parentElemente = puxa o elemento PAI do INPUT*/ 
