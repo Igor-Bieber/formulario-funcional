@@ -3,7 +3,7 @@ const username = document.getElementById("username");
 const email = document.getElementById("email");
 const password = document.getElementById("senha");
 const passwordConfirmation = document.getElementById("senhaConfirm");
-form.addEventListener("submit", (e) => {
+form.addEventListener("input", (e) => {
     e.preventDefault();
     checkInputs();
   });
@@ -29,8 +29,6 @@ function checkInputs() {
     if(usernameValue.length > 24){
         setErrorFor(username,"Usuário deve ter no máximo 24 caracteres")
     }
-
-
     
     /*Faz dar erro se as senhas não forem iguais e da erro se os campos de senha
     estiverem vazios*/ 
@@ -62,7 +60,28 @@ function checkInputs() {
         setSuccessFor(email);
     }
 
+    /*fórmula pra */ 
+    const allFormControls = form.querySelectorAll(".form-control");
+
+    const formValid = [ ... allFormControls].every((formControl) => {
+        return (formControl.className === "form-control success");
+    });
+
+    
+    
+    if (formValid){
+        console.log("o formulário está 100%");
+        habilitaButao();
+    }
+    
 }
+
+function habilitaButao(butao){
+
+    let button = document.querySelector(".butao");
+    let habilitaButao = (button.disabled = false);
+}
+
 function setErrorFor (input, message) {
     /*input.parentElemente = puxa o elemento PAI do INPUT*/ 
     const formControl = input.parentElement;
