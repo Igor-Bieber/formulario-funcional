@@ -77,7 +77,6 @@ body {
     border-radius: 10px;
     padding: 10px;
     margin-top: 40px;
-    cursor: pointer;
 }
 
 /* Puxando o input dentro da div form-control que contem a classe success */
