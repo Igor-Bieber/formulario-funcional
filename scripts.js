@@ -60,26 +60,29 @@ function checkInputs() {
         setSuccessFor(email);
     }
 
-    /*fórmula pra */ 
+    /*fórmula pra verificar  */ 
     const allFormControls = form.querySelectorAll(".form-control");
-
     const formValid = [ ... allFormControls].every((formControl) => {
         return (formControl.className === "form-control success");
     });
 
-    
-    
+    //se o usuário estiver 100% válido:
     if (formValid){
-        console.log("o formulário está 100%");
         habilitaButao();
+    }else{
+        desabilitaButao();
     }
     
 }
 
 function habilitaButao(butao){
-
     let button = document.querySelector(".butao");
     let habilitaButao = (button.disabled = false);
+}
+
+function desabilitaButao(butao){
+    let button = document.querySelector(".butao");
+    let desabilitaButao = (button.disabled = true);
 }
 
 function setErrorFor (input, message) {
