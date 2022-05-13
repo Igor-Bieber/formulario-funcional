@@ -3,10 +3,20 @@ const username = document.getElementById("username");
 const email = document.getElementById("email");
 const password = document.getElementById("senha");
 const passwordConfirmation = document.getElementById("senhaConfirm");
+var NOMES = [];
+var EMAILS = [];
+
 form.addEventListener("input", (e) => {
     e.preventDefault();
     checkInputs();
   });
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    salvarNome();
+    salvarEmail();
+  });
+
 function checkInputs() {
     const usernameValue = username.value;
     const emailValue = email.value;
@@ -71,6 +81,44 @@ function checkInputs() {
         habilitaButao();
     }else{
         desabilitaButao();
+    }
+    
+}
+
+//------------------FUNÇÕES-----------------------
+
+//função que deixa todos os nomes vazios
+function clearInputs(){
+    username.value = "";
+    senha.value = "";
+    senhaConfirm.value = "";
+    email.value = "";
+}
+
+function salvarEmail(){
+    if (!!EMAILS.find((imail)=> imail === email.value)){
+        setErrorFor(email,"Já existe uma conta atribuida a esse email!");
+    }else{
+        //da um push do que está no input de username para o array NOMES
+        EMAILS.push(email.value);
+        //console.log(EMAILS);
+        //função que faz todos os inputs ficarem vazios.
+        clearInputs();
+    }
+}
+
+function salvarNome(){
+    
+    /*NOMES.find está comparando se "nome" é igual ao valor que está no input username,
+    se for igual ele retora "true" pq ele encontrou algo igual, se não encontrar ele retorna "false"*/
+    if (!!NOMES.find((nome)=> nome === username.value)){
+        setErrorFor(username,"Usuário ja existente!");
+    }else{
+        //da um push do que está no input de username para o array NOMES
+        NOMES.push(username.value);
+        //console.log(NOMES);
+        //função que faz todos os inputs ficarem vazios.
+        clearInputs();
     }
     
 }
